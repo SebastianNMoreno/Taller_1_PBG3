@@ -60,26 +60,10 @@ def calcular_costo_envio(kilometros):
     Calcula el costo de envío
 
     >>> calcular_costo_envio(5)
-    0
+    575
 
     >>> calcular_costo_envio(10)
-    0
-
-    :param kilometros: Kilometros a recorrer
-    :return: Costo de envio productos
-    '''
-    return kilometros * 0
-
-def calcular_costo_envio_fuera(kilometros):
-    '''
-    (num) -> num
-    Calcula el costo de envío por fuera
-
-    >>> calcular_costo_envio(5)
-    575.0
-
-    >>> calcular_costo_envio(10)
-    1150.0
+    1150
 
     :param kilometros: Kilometros a recorrer
     :return: Costo de envio productos
@@ -92,15 +76,15 @@ def calcular_precio_producto_fuera(coste_producto,kilometros):
 
     Calcular el precio de producto enviados fuera de la ciudad
 
-    >>> calcular_precio_producto_fuera(4)
-    9
+    >>> calcular_precio_producto_fuera(4, 6)
+    696.0
 
     :param coste_producto: Valor del producto
     :param kilometros: Kilometros recorridos fuera de la ciudad
     :return: Precio del prodcuto fuera de la ciudad
     '''
 
-    return calcular_precio_producto(coste_producto) +  calcular_costo_envio_fuera(kilometros)
+    return calcular_precio_producto(coste_producto) +  calcular_costo_envio(kilometros)
 
 def calcular_iva_producto(coste_producto, tasa):
     '''
@@ -108,9 +92,9 @@ def calcular_iva_producto(coste_producto, tasa):
 
     Calcula el IVA del producto
 
-    >>> calcular_iva_producto(15)
-    pass
-    
+    >>> calcular_iva_producto(15, 14)
+    3.1500000000000004
+
     :param coste_producto: Valor del producto
     :param tasa: IVA establecido del producto
     :return: IVA del producto
@@ -121,12 +105,12 @@ def calcular_iva_producto(coste_producto, tasa):
 def calcular_iva_servicio(cantidad_horas, tasa):
     '''
     (num, num) -> num
-    
+
     Calcula el iva del servicio
-    
-    >>> calcular_iva_servicio(3)
-    5
-    
+
+    >>> calcular_iva_servicio(3, 15)
+    45000.0
+
     :param cantidad_horas: Horas laboradas
     :param tasa: IVA estipulada
     :return: IVA del servivio
@@ -137,28 +121,40 @@ def calcular_iva_servicio(cantidad_horas, tasa):
 def calcular_iva_envio(kilometros, tasa):
     '''
     (num, num) -> num
-    
+
     Calcula el iva de envío
-    
-    >>> calcular_iva_envio(6)
-    1
-    
-    :param kilometros: kilometros recorridos 
+
+    >>> calcular_iva_envio(6, 15)
+    103.5
+
+    :param kilometros: kilometros recorridos
     :param tasa: IVA estipulado
     :return: IVA delñ envío
     '''
-    
+
     return calcular_costo_envio(kilometros) * (tasa/100)
 
 
-def calcular_iva_servicio_fuera(cantidad_horas, tasa):
-    pass
+def calcular_iva_servicio_fuera(cantidad_horas, tasa, kilometros):
+    '''
+    (num. num, num) -> num
 
+    Calcula el IVA de servicio por fuera
+
+    >>> calcular_iva_servicio_fuera(10, 15, 40)
+    150690.0
+
+    :param cantidad_horas: Cantidad de horas trabajadas
+    :param tasa: IVA tasa definida
+    :return: Iva del servicio fuera
+    '''
+
+    return (calcular_precio_servicio(cantidad_horas) + calcular_costo_envio(kilometros)) * (tasa/100)
 
 def calcular_recaudo_locales(coste_producto_1,
                              coste_producto_2,
                              coste_producto_3):
-    pass
+    
 
 def calcular_recaudo_horas_extra(horas_1,
                                  horas_2,
