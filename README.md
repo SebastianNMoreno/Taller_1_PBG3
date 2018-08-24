@@ -117,7 +117,6 @@ def calcular_iva_servicio(cantidad_horas, tasa):
     '''
     return calcular_precio_servicio(cantidad_horas)*(tasa/100)
 
-
 def calcular_iva_envio(kilometros, tasa):
     '''
     (num, num) -> num
@@ -133,7 +132,6 @@ def calcular_iva_envio(kilometros, tasa):
     '''
 
     return calcular_costo_envio(kilometros) * (tasa/100)
-
 
 def calcular_iva_servicio_fuera(cantidad_horas, tasa, kilometros):
     '''
@@ -185,9 +183,21 @@ def calcular_recaudo_horas_extra(horas_1, horas_2, horas_3, horas_4):
     return calcular_precio_servicio_extras(horas_1) + calcular_precio_servicio_extras(horas_2) + \
            calcular_precio_servicio_extras(horas_3) + calcular_precio_servicio_extras(horas_4)
 
+def calcular_recaudo_mixto_local(coste_producto_1, coste_producto_2, horas_1, horas_2):
+    '''
+    (num, num, date, date) -> num
 
-def calcular_recaudo_mixto_local(coste_producto_1,
-                                 coste_producto_2,
-                                 horas_1,
-                                 horas_2):
-    pass
+    Calcula el recaudo mixto locales
+
+    >>> calcular_recaudo_mixto_local(3, 6, 8, 2)
+    1200013.5
+
+    :param coste_producto_1: Valor producto 1
+    :param coste_producto_2: Valor producto 2
+    :param horas_1: Horas trabajadas 1
+    :param horas_2: Horas trabajadas 2
+    :return: recaudo mixto
+    '''
+
+    return calcular_precio_producto(coste_producto_1) + calcular_precio_producto(coste_producto_2) + \
+           calcular_precio_servicio_extras(horas_1) + calcular_precio_servicio(horas_2)
